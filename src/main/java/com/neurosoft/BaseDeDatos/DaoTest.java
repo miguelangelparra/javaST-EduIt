@@ -13,12 +13,12 @@ import java.sql.SQLException;
  */
 public class DaoTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         ConnectionManager connectionManager = new ConnectionManager();
         EstudianteDao dao = new EstudianteDao(connectionManager);
-
+        /*
         //CREA ESTUDIANTE
-         Estudiante e1 = new Estudiante();
+        Estudiante e1 = new Estudiante();
         e1.setNombre("Carlos");
         e1.setApellido("Gaviota");
         e1.setPadron("2022");
@@ -28,9 +28,9 @@ public class DaoTest {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         //MODIFICA ESTUDIANTE
-        /* Estudiante e1 = new Estudiante();
+         Estudiante e1 = new Estudiante();
         e1.setId(1);
         e1.setNombre("Miguelangel De Jesus");
         e1.setApellido("Parra Davila");
@@ -41,5 +41,27 @@ public class DaoTest {
             e.printStackTrace();
         }
          */
+
+ /*        
+//Crea Carrera
+        CarreraDao carreraDao = new CarreraDao(connectionManager);
+        Carrera carrera1 = new Carrera();
+        carrera1.setNombre("Ingenieria Psicologica");
+        carreraDao.grabar(carrera1);
+         */
+//Crea materia
+        MateriaDao materiaDao = new MateriaDao(connectionManager);
+        /*     Materia materia1 = new Materia();
+        materia1.setNombre("Analisis Matematico 1");
+        materia1.setCargaHoraria(50);
+        materiaDao.grabar(materia1);
+
+        Materia materia2 = new Materia();
+        materia2.setNombre("Analisis Matematico 4");
+        materia2.setCargaHoraria(500);
+        materiaDao.grabar(materia2);
+         */
+        System.out.println(materiaDao.obtenerUno(1));
+        materiaDao.obtenerTodos().forEach(System.out::println);
     }
 }

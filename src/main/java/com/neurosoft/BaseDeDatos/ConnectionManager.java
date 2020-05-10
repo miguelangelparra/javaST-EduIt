@@ -14,12 +14,12 @@ import java.sql.SQLException;
  * @author m.parra.davila
  */
 public class ConnectionManager {
-
+    
     private Connection connection = null;
-
+    
     public Connection getConnection() throws SQLException {
         //Confirma que exista una conexion valida 
-        if (connection == null || connection.isClosed()) {
+        if (connection == null || connection.isClosed() || connection.isValid(10000)) {
             //Establece una conexion a la base de datos 
 
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/universidad", "root", "admin");

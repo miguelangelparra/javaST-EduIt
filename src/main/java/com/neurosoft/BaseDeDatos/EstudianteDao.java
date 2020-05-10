@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author m.parra.davila
  */
-public class EstudianteDao {
+public class EstudianteDao implements Dao<Estudiante> {
 
     private ConnectionManager connectionManager;
 
@@ -24,28 +24,30 @@ public class EstudianteDao {
         this.connectionManager = connectionManager;
     }
 
+    @Override
     public Estudiante grabar(Estudiante estudiante) throws SQLException {
-    //Los simbolos ? indican que alli iran valores. 
+        //Los simbolos ? indican que alli iran valores. 
         String sql = "insert into estudiante (nombre, apellido, padron) values (?, ?, ?)";
-    //Prepara el script que será eejecutado. El segundo paramentro pide el id generado
+        //Prepara el script que será eejecutado. El segundo paramentro pide el id generado
         PreparedStatement statement = connectionManager.getConnection().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-    //Setea los valores, comenzando por 1
+        //Setea los valores, comenzando por 1
         statement.setString(1, estudiante.getNombre());
         statement.setString(2, estudiante.getApellido());
         statement.setString(3, estudiante.getPadron());
-    //Ejecuta el script 
+        //Ejecuta el script 
         statement.executeUpdate();
 
-    // vuelve a consultar la base para pedirle el idgenerado
+        // vuelve a consultar la base para pedirle el idgenerado
         ResultSet keys = statement.getGeneratedKeys();
-    //Setea al objeto el id generado
+        //Setea al objeto el id generado
         if (keys.next()) {
             estudiante.setId(keys.getInt(1));
         }
         return estudiante;
     }
 
-    public void updateEstudiante(Estudiante estudiante) throws SQLException {
+    @Override
+    public void actualizar(Estudiante estudiante) throws SQLException {
         String sql = "UPDATE estudiante set nombre=?,apellido=?,padron=? WHERE id= ?";
         PreparedStatement stmt = connectionManager.getConnection().prepareStatement(sql);
         stmt.setString(1, estudiante.getNombre());
@@ -55,26 +57,16 @@ public class EstudianteDao {
         stmt.executeUpdate();
     }
 
-    public void deleteEstudiante(Integer id) throws SQLException {
+    @Override
+    public void eliminar(Integer id) throws SQLException {
         String sql = "DELETE from estudiante WHERE id=?";
         PreparedStatement stmt = connectionManager.getConnection().prepareStatement(sql);
         stmt.setInt(1, id);
         stmt.executeUpdate();
     }
 
-    public List<Estudiante> obtenerTodosEstudiantes() throws SQLException {
-        String sql = "SELECT * from estudiante";
-        Statement stmt = connectionManager.getConnection().createStatement();
-        ResultSet resultSet = stmt.executeQuery(sql);
-
-        List<Estudiante> estudiantes = new ArrayList<Estudiante>();
-        while (resultSet.next()) {
-            estudiantes.add(construirEstudiante(resultSet));
-        }
-        return estudiantes;
-    }
-
-    public Estudiante obtenerPorId(Integer id) throws SQLException {
+    @Override
+    public Estudiante obtenerUno(Integer id) throws SQLException {
         String sql = "SELECT * FROM estudiante WHERE id= ?";
         PreparedStatement statement = connectionManager.getConnection().prepareStatement(sql);
         statement.setInt(1, id);
@@ -87,6 +79,19 @@ public class EstudianteDao {
 
     }
 
+    @Override
+    public List<Estudiante> obtenerTodos() throws SQLException {
+        String sql = "SELECT * from estudiante";
+        Statement stmt = connectionManager.getConnection().createStatement();
+        ResultSet resultSet = stmt.executeQuery(sql);
+
+        List<Estudiante> estudiantes = new ArrayList<Estudiante>();
+        while (resultSet.next()) {
+            estudiantes.add(construirEstudiante(resultSet));
+        }
+        return estudiantes;
+    }
+
     private Estudiante construirEstudiante(ResultSet resultSet) throws SQLException {
         Estudiante estudiante = new Estudiante();
         estudiante.setId(resultSet.getInt("id"));
@@ -96,4 +101,5 @@ public class EstudianteDao {
         return estudiante;
 
     }
+
 }

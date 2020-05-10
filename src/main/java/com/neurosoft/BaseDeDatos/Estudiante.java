@@ -11,21 +11,12 @@ import java.util.List;
  *
  * @author m.parra.davila
  */
-public class Estudiante {
-    
-    private Integer id;
+public class Estudiante extends Entidad {
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
     private String nombre;
     private String apellido;
     private String padron;
-    private List<Carrera> carreras; 
+    private List<Carrera> carreras;
 
     public String getNombre() {
         return nombre;
@@ -58,6 +49,5 @@ public class Estudiante {
     public void setCarreras(List<Carrera> carreras) {
         this.carreras = carreras;
     }
-    
-    
+
 }

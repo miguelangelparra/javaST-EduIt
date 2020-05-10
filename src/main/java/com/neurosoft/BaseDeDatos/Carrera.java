@@ -11,7 +11,8 @@ import java.util.List;
  *
  * @author m.parra.davila
  */
-public class Carrera {
+public class Carrera extends Entidad {
+
     private String nombre;
     private List<Materia> materias;
 
@@ -30,5 +31,5 @@ public class Carrera {
     public void setMaterias(List<Materia> materias) {
         this.materias = materias;
     }
-    
+
 }
