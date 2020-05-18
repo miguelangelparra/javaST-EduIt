@@ -5,7 +5,6 @@
  */
 package com.neurosoft.InterfazGrafica.persistencia;
 
-import com.neurosoft.BaseDeDatos.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *
  * @author m.parra.davila
  */
 public abstract class DaoSupport<T extends Entidad> implements Dao<T> {
@@ -111,5 +109,19 @@ public abstract class DaoSupport<T extends Entidad> implements Dao<T> {
         }
         return entidades;
     }
+
+    public List<T> obtenerPor(String campo, Object value) throws SQLException {
+        String sql = "SELECT * from " + tableName() + " where " + campo + " = ?";
+        PreparedStatement preparedStatement = connectionManager.getConnection().prepareStatement(sql);
+        preparedStatement.setObject(1, value);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        List<T> entidades = new ArrayList<>();
+        while (resultSet.next()) {
+            entidades.add(createEntity(resultSet));
+        }
+        return entidades;
+    }
+
 
 }

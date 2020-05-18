@@ -5,7 +5,8 @@
  */
 package com.neurosoft.InterfazGrafica.persistencia;
 
-import com.neurosoft.BaseDeDatos.*;
+import com.neurosoft.InterfazGrafica.dominio.Materia;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

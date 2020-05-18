@@ -5,7 +5,6 @@
  */
 package com.neurosoft.InterfazGrafica.persistencia;
 
-import com.neurosoft.BaseDeDatos.*;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -24,4 +23,6 @@ public interface Dao<T> {
     T obtenerUno(Integer id) throws SQLException;
 
     List<T> obtenerTodos() throws SQLException;
+
+    List<T> obtenerPor(String campo, Object value) throws SQLException;
 }

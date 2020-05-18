@@ -5,7 +5,8 @@
  */
 package com.neurosoft.InterfazGrafica.dominio;
 
-import com.neurosoft.BaseDeDatos.*;
+import com.neurosoft.InterfazGrafica.persistencia.Entidad;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -17,7 +18,7 @@ public class Materia extends Entidad {
 
     private String nombre;
     private int cargaHoraria;
-    private List<Carrera> carreras;
+    //private List<Carrera> carreras;
 
     public String getNombre() {
         return nombre;
@@ -35,20 +36,20 @@ public class Materia extends Entidad {
         this.cargaHoraria = cargaHoraria;
     }
 
-    public List<Carrera> getCarreras() {
+   /* public List<Carrera> getCarreras() {
         return carreras;
     }
 
     public void setCarreras(List<Carrera> carreras) {
         this.carreras = carreras;
     }
-
+*/
     @Override
     public int hashCode() {
         int hash = 5;
         hash = 29 * hash + Objects.hashCode(this.nombre);
         hash = 29 * hash + this.cargaHoraria;
-        hash = 29 * hash + Objects.hashCode(this.carreras);
+    //    hash = 29 * hash + Objects.hashCode(this.carreras);
         return hash;
     }
 
@@ -70,16 +71,19 @@ public class Materia extends Entidad {
         if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
-        if (!Objects.equals(this.carreras, other.carreras)) {
+    /*    if (!Objects.equals(this.carreras, other.carreras)) {
             return false;
-        }
+        }*/
         return true;
 
     }
 
     @Override
     public String toString() {
-        return "Materia{" + "id=" + this.getId() + ", nombre=" + nombre + ", cargaHoraria=" + cargaHoraria + ", carreras=" + carreras + '}';
+//        return "Materia{" + "id=" + this.getId() + ", nombre=" + nombre + ", cargaHoraria=" + cargaHoraria + ", carreras=" + carreras + '}';
+        return "Materia{" + "id=" + this.getId() + ", nombre=" + nombre + ", cargaHoraria=" + cargaHoraria + '}';
+
     }
+
 
 }
