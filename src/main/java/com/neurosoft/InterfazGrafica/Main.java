@@ -10,11 +10,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 
 public class Main extends Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
 //Metodo de la superclase Application que dispara el Fx
         launch(args);
     }
@@ -45,7 +48,7 @@ public class Main extends Application {
        //El codigo anterior es repetitivo
         //El stage es como el escenario y scene es la escena
 
-
-
     }
+
+
 }

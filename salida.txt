@@ -1,0 +1,8 @@
+Esto es un archivo de prueba
+para ver como se lee un archivo
+en Java
+con File y FileReader
+File solo indica ruta
+FileREader es el que va a leer el archivo
+Amarillo
+ExtrEMADO

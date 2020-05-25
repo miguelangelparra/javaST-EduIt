@@ -65,6 +65,9 @@ public class Materia extends Entidad {
             return false;
         }
         final Materia other = (Materia) obj;
+        if (this.getId() != other.getId()){
+            return false;
+        }
         if (this.cargaHoraria != other.cargaHoraria) {
             return false;
         }
